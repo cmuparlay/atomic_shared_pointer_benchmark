@@ -58,4 +58,4 @@ add_benchmark(bench_queue)
 #   CONFIGURE_COMMAND make clean
 #   INSTALL_COMMAND ""
 # )
-# add_subdirectory(memory_reclamation)
+add_subdirectory(memory_reclamation)

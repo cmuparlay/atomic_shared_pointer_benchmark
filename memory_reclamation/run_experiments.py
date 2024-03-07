@@ -197,7 +197,7 @@ if __name__ == "__main__":
             exit(1)
         exp_to_run.append((ds, workload))
 
-    binary = "./bin/release/main"
+    binary = "./benchmark"
     preamble = ""
 
     if valid_command('jemalloc-config --libdir'):

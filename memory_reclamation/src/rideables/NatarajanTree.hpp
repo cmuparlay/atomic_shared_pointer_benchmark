@@ -27,10 +27,10 @@ limitations under the License.
 #include "Harness.hpp"
 #include "ConcurrentPrimitives.hpp"
 #include "ROrderedMap.hpp"
-#include "HazardTracker.hpp"
+#include "trackers/HazardTracker.hpp"
 #include "RUnorderedMap.hpp"
 // #include "ssmem.h"
-#include "MemoryTracker.hpp"
+#include "trackers/MemoryTracker.hpp"
 #include "RetiredMonitorable.hpp"
 
 
