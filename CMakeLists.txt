@@ -8,9 +8,19 @@ set(NUMA_COMMAND numactl -i all)
 # Link boost::program_options
 find_package(Boost 1.40 COMPONENTS program_options REQUIRED)
 
+# Add the cdrc library
+option(CDRC "Enable cdrc benchmarks" ON)
+if (CDRC)
+  add_subdirectory(external/cdrc)
+endif()
+
 function(add_benchmark TARGET)
   add_executable(${TARGET} ${TARGET}.cpp)
-  target_link_libraries(${TARGET} cdrc)
+  if (CDRC)
+    target_link_libraries(${TARGET} concurrent_deferred_rc)
+    target_include_directories(${TARGET} PRIVATE external/cdrc/include)
+  endif()
+
   target_link_libraries(${TARGET} Boost::program_options)
   target_compile_features(${TARGET} PRIVATE cxx_std_20)
 
@@ -40,11 +50,12 @@ add_benchmark(bench_queue)
 
 # Build the memory reclamation benchmark suite from its own Makefile
 # since it does not come with a CMake configuration.
-include(ExternalProject)
-ExternalProject_Add(
-  memory_reclamation
-  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/memory_reclamation
-  BUILD_IN_SOURCE TRUE
-  CONFIGURE_COMMAND make clean
-  INSTALL_COMMAND ""
-)
+# include(ExternalProject)
+# ExternalProject_Add(
+#   memory_reclamation
+#   SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/memory_reclamation
+#   BUILD_IN_SOURCE TRUE
+#   CONFIGURE_COMMAND make clean
+#   INSTALL_COMMAND ""
+# )
+# add_subdirectory(memory_reclamation)

@@ -212,4 +212,3 @@ void run_benchmark(std::string alg) {
 }
 
 #endif  // BENCHMARKS_COMMON_HPP_
-

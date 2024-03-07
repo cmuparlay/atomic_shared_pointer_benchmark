@@ -1,0 +1,3 @@
+[submodule "external/concurrent_deferred_rc"]
+	path = external/cdrc
+	url = https://github.com/cmuparlay/concurrent_deferred_rc
